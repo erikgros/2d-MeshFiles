@@ -13,8 +13,8 @@ wall1 = 0.015; // film
 wall2 = 0.08; // coarse
 
 D = 1.0;
-r = 0.45*D;//0.3*D; // bubble radius
-body = 0.417042*D;//1.88834*D; // Case 17
+r = 0.45*D; //0.3*D; // bubble radius
+body = 0.534225*D; //1.39039*D; // bubble length
 slug = 0.7*r;
 
 For t In {0:nb-1}

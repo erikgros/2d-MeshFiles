@@ -9,7 +9,7 @@ wallC = 0.12;
 
 D = 1.0;
 r = 0.3*D; //0.45*D; // bubble radius
-body = 1.88834*D; //0.417042*D; // bubble length
+body = 1.39039*D; //0.534225*D; // bubble length
 slug = 0.7*r;
 
 For t In {0:nb-1}
