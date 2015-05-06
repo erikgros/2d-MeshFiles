@@ -11,8 +11,8 @@ wall2 = 0.14; // coarse
 
 /* Defining bubble shape: */
 D = 1.0;
-r = 0.3*D;       // bubble radius
-body = 1.88834*D;   // Case 17
+r = 0.45*D; //0.3*D; // bubble radius
+body = 0.534225*D; //1.39039*D; // bubble length
 slug = 0.7*r;
 
 xc = 0.0;
@@ -84,7 +84,7 @@ Characteristic Length { k+3, k+4, k+5, k+6 } = wall1;
 Transfinite Line { bubbleWall } = 37 Using Bump 0.3;
 
 /* Defining boundary conditions: */
-Physical Point('contactPoint') = { 3, 6 };
+//Physical Point('contactPoint') = { 3, 6 };
 Physical Line('wallInflowUParabolic') = { in, out };
 Physical Line('wallNoSlipPressure') = { 5, 7, 8 };
 Physical Line('wallNormalV') = { 9, 10, 11, 4, 6 };  // symmetry bc
