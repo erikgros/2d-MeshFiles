@@ -42,7 +42,7 @@ right = newl; Line(right) = { k+1, 4 };
 base = newl; Line(base) = { 4, 2 };
 left = newl; Line(left) = { 2, k+2 };
 
-Physical Line('WetWall') = { right, base, left };
+Physical Line('wallWet') = { right, base, left };
 
 Extrude {0, lengthY, 0} {
   Point{k+1, k+2};
