@@ -20,7 +20,7 @@ xc = 0.0; yc = 0.0; zc = 0.0; // drop center
  *         2 o  1o  o 4
  */
 
-Point(1) = {xc, yc, zc, b1}; // center
+Point(1) = {xc, yc, zc, b1};   // center
 Point(2) = {xc-r, yc, zc, b1}; // left
 Point(3) = {xc, yc+r, zc, b2}; // up
 Point(4) = {xc+r, yc, zc, b1}; // right
@@ -49,6 +49,7 @@ Extrude {0, lengthY, 0} {
 }
 top = newl; Line(top) = { k+3, k+4 };
 
-Physical Line('wallNoSlip') = { right+3, right+4, top };
+Physical Line('wallNoSlip') = { right+3, right+4 };
+Physical Line('wallNoSlipPressure') = { top };
 
 Transfinite Line { base } = 39 Using Bump 0.5;
