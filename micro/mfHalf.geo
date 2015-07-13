@@ -1,13 +1,13 @@
-// x-axis-symmetric microchannel flow using moving frame
+// symmetric microchannel flow using moving frame
 
 Mesh.Points = 1;
 Mesh.Lines = 1;
 Mesh.CharacteristicLengthMax = 0.5;
 //Printf("MAX LEN %g", Mesh.CharacteristicLengthMax );
 
-b1 = 0.035;  // bubble
-wall1 = 0.035; // film
-wall2 = 0.14; // coarse
+b1 = 0.016;  // bubble
+wall1 = 0.015; // film
+wall2 = 0.08; // coarse
 
 /* Defining bubble shape: */
 D = 1.0;
@@ -81,7 +81,7 @@ Line(out) = {k+7, k+8};
 
 Characteristic Length { k+3, k+4, k+5, k+6 } = wall1;
 
-Transfinite Line { bubbleWall } = 37 Using Bump 0.3;
+Transfinite Line { bubbleWall } = 69 Using Bump 0.5;
 
 /* Defining boundary conditions: */
 //Physical Point('contactPoint') = { 3, 6 };
