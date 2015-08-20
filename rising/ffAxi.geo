@@ -1,17 +1,17 @@
 // axisymmetric rising bubble using fixed frame
 
-l1 = 0.02; // fine
-l2 = 0.09;  // coarse
+l1 = 0.05; // fine
+l2 = 0.12;  // coarse
 
-D = 1.0; // channel diameter
-l = 6.0*D; // length of the domain
+D = 3.5; // channel diameter
+l = 5.5; // length of the domain
 
 /* Defining bubble shape (circular): */
-r = 0.25*D;
+r = 0.5;
 xc = 0.0;
 yc = 0.0;
 
-Point(1) = {    xc+r,   yc, 0.0, l2}; // center
+Point(1) = {    xc+r,   yc, 0.0, l1}; // center
 Point(2) = {    xc+r, yc+r, 0.0, l1}; // up
 Point(3) = {xc+2.0*r,   yc, 0.0, l1}; // right
 Point(4) = {      xc,   yc, 0.0, l1}; // left
@@ -19,7 +19,7 @@ Point(4) = {      xc,   yc, 0.0, l1}; // left
 Ellipse(1) = { 2, 1, 1, 3 };
 Ellipse(2) = { 4, 1, 1, 2 };
 
-dist = 1.5*r; // distance between bubble and boundary
+dist = 3.5*r; // distance between bubble and boundary
 
 k = newp;
 /*  k+2                                   k+3
@@ -37,10 +37,10 @@ Point(k+4) = {2.0*r+l,   0.0, 0.0, l2};
 top = newl; Line(top) = { k+2, k+3 };
 bl = newl; Line(bl) = { 1, 4 };
 br = newl; Line(br) = { 3, 1 };
-left = newl; Line(left) = { k+1, 4 };
-right = newl; Line(right) = { 3, k+4 };
+left = newl; Line(left) = { 4, k+1 };
+right = newl; Line(right) = { k+4, 3 };
 in = newl; Line(in) = {k+1, k+2};
-out = newl; Line(out) = {k+4, k+3};
+out = newl; Line(out) = {k+3, k+4};
 
 /* Boundary conditions: */
 Physical Line(Sprintf("bubble%g",1)) = {1, 2};
