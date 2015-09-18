@@ -1,15 +1,15 @@
 /* x-axis-symmetric flow around a sphere in a channel */
 
-l1 = 0.01;  // coarse
-l2 = 0.09;  // fine
+l1 = 0.19; // fine
+l2 = 0.7; // coarse
 
-D = 1.0; // channel diameter
-front = 0.5*D;
-back = 0.5*D;
-dist = D;
+D = 10.0; // channel diameter
+front = 0.1*D;
+back = 0.3*D;
+dist = 0.6*D;
 
 // sphere:
-r = 0.2*D; // sphere radius
+r = 1.0; // sphere radius
 xc = 0.0;
 yc = 0.0;
 
@@ -50,9 +50,11 @@ right = newl; Line(right) = { 4, k+5 };
 in = newl; Line(in) = {k+3, k+4};
 out = newl; Line(out) = {k+7, k+8};
 
+Transfinite Line { top } = 40 Using Bump 2;
+
 // boundary conditions:
-Physical Line('wallInflowU') = { in };
+Physical Line('wallConstU') = { in, top, 4, 6 };
 Physical Line('wallOutflow') = { out };
-Physical Line('wallNoSlip') = { 1, 2, top, 4, 6 };
-Physical Line('wallNormalV') = { left, right, 3, 5 };  // symmetry bc
+Physical Line('wallNoSlip') = { 1, 2 };
+Physical Line('wallNormalY') = { left, right, 3, 5 };  // symmetry bc
 
