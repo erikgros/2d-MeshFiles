@@ -63,19 +63,19 @@ top = newl; Line(top) = { k+4, k+6 };
 bc = newl; Line(bc) = { 1, 4 };
 br = newl; Line(br) = { 3, 1 };
 bl = newl; Line(bl) = { 4, 6 };
-left = newl; Line(left) = { k+3, 6 };
-right = newl; Line(right) = { 3, k+5 };
+left = newl; Line(left) = { 6, k+3 };
+right = newl; Line(right) = { k+5, 3 };
 
 
 in = newl; Line(in) = {k+1, k+2};
-out = newl; Line(out) = {k+7, k+8};
+out = newl; Line(out) = {k+8, k+7};
 
 Characteristic Length { k+3, k+4, k+5, k+6 } = l2;
 
 /* Defining boundary conditions: */
-Physical Line('wallParabolic3d') = { in };
+Physical Line('wallParabolicU3d') = { in };
 Physical Line('wallOutflow') = { out };
 Physical Line('wallNoSlip') = { 5, top, 7 };
-Physical Line('wallNormalV') = { 4, 6, bc, br, bl, left, right };  // symmetry bc
+Physical Line('wallNormalY') = { -4, -6, bc, br, bl, left, right };  // symmetry bc
 Physical Line(Sprintf("bubble%g",1)) = {1, 2, 3};
 

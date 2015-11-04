@@ -1,7 +1,7 @@
 // axisymmetric rising bubble using fixed frame
 
-l1 = 0.05; // fine
-l2 = 0.12;  // coarse
+l1 = 0.02; // fine
+l2 = 0.1;  // coarse
 
 D = 3.5; // channel diameter
 l = 5.5; // length of the domain
@@ -45,4 +45,4 @@ out = newl; Line(out) = {k+3, k+4};
 /* Boundary conditions: */
 Physical Line(Sprintf("bubble%g",1)) = {1, 2};
 Physical Line('wallNoSlip') = { top, in, out };
-Physical Line('wallNormalV') = { bl, br, left, right };  // symmetry bc
+Physical Line('wallNormalY') = { bl, br, left, right };  // symmetry bc
