@@ -1,25 +1,23 @@
 // axisymmetric rising bubble using fixed frame
 
 l1 = 0.02; // fine
-l2 = 0.1;  // coarse
+l2 = 0.5;  // coarse
 
-D = 3.5; // channel diameter
-l = 5.5; // length of the domain
+D = 8.0; // channel diameter
+l = 9.0; // length of the domain
 
 /* Defining bubble shape (circular): */
 r = 0.5;
-xc = 0.0;
-yc = 0.0;
 
-Point(1) = {    xc+r,   yc, 0.0, l1}; // center
-Point(2) = {    xc+r, yc+r, 0.0, l1}; // up
-Point(3) = {xc+2.0*r,   yc, 0.0, l1}; // right
-Point(4) = {      xc,   yc, 0.0, l1}; // left
+Point(1) = {     r, 0.0, 0.0, l1}; // center
+Point(2) = {     r,   r, 0.0, l1}; // up
+Point(3) = { 2.0*r, 0.0, 0.0, l1}; // right
+Point(4) = {   0.0, 0.0, 0.0, l1}; // left
 
 Ellipse(1) = { 2, 1, 1, 3 };
 Ellipse(2) = { 4, 1, 1, 2 };
 
-dist = 3.5*r; // distance between bubble and boundary
+dist = 3.0*r; // distance between bubble and boundary
 
 k = newp;
 /*  k+2                                   k+3
