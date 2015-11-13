@@ -1,16 +1,31 @@
 // axisymmetric bubble in microchannel
+D = 1.0; // channel diameter
+Mesh.ElementOrder = 2;
 
+/* Case 17: */
 l1 = 0.025; // very fine
 l2 = 0.05; // fine
 l3 = 0.14; // coarse
 
-D = 1.0; // channel diameter
+r = 0.3*D; //0.45*D;
+body = 1.88834*D; //0.417042*D;
+
 ll = 0.5*D; // length of the left section
 lr = 5.5*D; // length of the right section
 
+/*  Case 18:
+l1 = 0.05; // very fine
+l2 = 0.08; // fine
+l3 = 0.1; // coarse
+
+0.45*D;
+body = 1.42685*D;
+
+ll = 0.5*D; // length of the left section
+lr = 6.5*D; // length of the right section
+*/
+
 /* Defining bubble shape: */
-r = 0.3*D; //0.45*D;
-body = 1.88834*D; //0.417042*D;
 xc = 0.0;
 yc = 0.0;
 
