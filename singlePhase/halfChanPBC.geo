@@ -1,4 +1,4 @@
-/* upper half of a symmetric channel */
+/* upper half of a (axis-)symmetric channel with periodic inlet/outlet */
 wall = 0.1;
 
 D = 1.0; // channel height
@@ -11,20 +11,19 @@ Point(4) = { wallLength/2.0,   0.0, 0.0, wall};
 
 l = newl;
 // inlet:
-Line(l) = {1, 3};
-Physical Line('wallConstU') = {l};
+Line(l) = {3, 1};
+Physical Line('wallLeft') = {l};
 
 // symmetry line:
-Line(l+1) = {3, 4};
+Line(l+1) = {4, 3};
 Physical Line('wallNormalY') = {l+1};
 
 // outlet:
-Line(l+2) = {4, 2};
-Physical Line('wallOutflow') = {l+2};
+Line(l+2) = {2, 4};
+Physical Line('wallRight') = {l+2};
 
 // upper wall:
-Line(l+3) = {2, 1};
-Physical Line('wallNoSlip') = {l+3};
+Line(l+3) = {1, 2};
+Physical Line('wallNoSlipP') = {l+3};
 
-//Transfinite Line {1, 3} = 100 Using Progression 1;
-//Transfinite Line {4, 2} = 20 Using Progression 1;
+Periodic Line { l } = { l+2 };
