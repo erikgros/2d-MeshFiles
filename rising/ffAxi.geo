@@ -1,10 +1,27 @@
 // axisymmetric rising bubble using fixed frame
-l1 = 0.06; // fine
-l2 = 0.5;  // coarse
+Case = -1;
+l1 = 0.08; // fine
+l2 = 0.1;  // coarse
 
-D = 10.0; // channel diameter (case 0)
+slipWalls = 0;
+D = 8.0; // channel diameter (case 0)
 l = 12.0; // total length of the domain
-dist = 10.0 / 6.0; // distance between the center and bottom (left) boundary
+dist = 2.0; // distance between the center and bottom (left) boundary
+If( Case == -1 )
+ Printf("Mirco");
+ slipWalls = 1;
+EndIf
+If( Case == 0 )
+ Printf("NumMetHeaTra");
+ D = 10.0;
+ //l = 20.0;
+ dist = 10.0 / 6.0;
+EndIf
+If( Case > 0 )
+ Printf("Gustavo");
+ l = 15.0;
+ dist = 3.0;
+EndIf
 
 /* Defining bubble shape (circel with diameter 1, cetered at origin): */
 Point(1) = {  0.0, 0.0, 0.0, l1}; // center
@@ -37,5 +54,13 @@ out = newl; Line(out) = {k+3, k+4};
 
 /* Boundary conditions: */
 Physical Line(Sprintf("bubble%g",1)) = {1, 2};
-Physical Line('wallNoSlip') = { top, in, out };
-Physical Line('wallNormalY') = { bl, br, left, right };  // symmetry bc
+If ( slipWalls )
+ Printf("Slip walls");
+ Physical Line('wallNoSlip') = { in, out };
+ Physical Line('wallNormalY') = { top, bl, br, left, right };  // symmetry bc
+EndIf
+If ( !slipWalls )
+ Printf("No-slip walls");
+ Physical Line('wallNoSlip') = { top, in, out };
+ Physical Line('wallNormalY') = { bl, br, left, right };  // symmetry bc
+EndIf
