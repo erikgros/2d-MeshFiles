@@ -1,15 +1,27 @@
 // axisymmetric rising bubble using fixed frame
-Case = -1;
-l1 = 0.08; // fine
-l2 = 0.1;  // coarse
+Case = -27;
+l1 = 0.04; // fine
+l2 = 0.3;  // coarse
 
-slipWalls = 0;
 D = 8.0; // channel diameter (case 0)
 l = 12.0; // total length of the domain
 dist = 2.0; // distance between the center and bottom (left) boundary
+If( Case == -27 )
+ Printf("C: Axisymmetric free boundary problems, J. Fluid Mech., vol. 341 pp. 269-294 (1997 341 pp. 269-294 (1997))");
+ D = 3.0;
+ dist = 1.0;
+ l1 = 0.015;
+ l2 = 0.3;
+EndIf
+If( Case == -26 )
+ Printf("A: Axisymmetric free boundary problems, J. Fluid Mech., vol. 341 pp. 269-294 (1997 341 pp. 269-294 (1997))");
+ D = 3.0;
+ dist = 1.0;
+ l1 = 0.04;
+ l2 = 0.3;
+EndIf
 If( Case == -1 )
  Printf("Mirco");
- slipWalls = 1;
 EndIf
 If( Case == 0 )
  Printf("NumMetHeaTra");
@@ -23,7 +35,7 @@ If( Case > 0 )
  dist = 3.0;
 EndIf
 
-/* Defining bubble shape (circel with diameter 1, cetered at origin): */
+/* Defining bubble shape (circle with diameter 1, cetered at origin): */
 Point(1) = {  0.0, 0.0, 0.0, l1}; // center
 Point(2) = {  0.0, 0.5, 0.0, l1}; // up
 Point(3) = {  0.5, 0.0, 0.0, l1}; // right
@@ -54,12 +66,12 @@ out = newl; Line(out) = {k+3, k+4};
 
 /* Boundary conditions: */
 Physical Line(Sprintf("bubble%g",1)) = {1, 2};
-If ( slipWalls )
+If ( Case < 0 )
  Printf("Slip walls");
  Physical Line('wallNoSlip') = { in, out };
  Physical Line('wallNormalY') = { top, bl, br, left, right };  // symmetry bc
 EndIf
-If ( !slipWalls )
+If ( Case >= 0 )
  Printf("No-slip walls");
  Physical Line('wallNoSlip') = { top, in, out };
  Physical Line('wallNormalY') = { bl, br, left, right };  // symmetry bc
