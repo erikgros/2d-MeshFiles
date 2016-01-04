@@ -1,8 +1,9 @@
 /* upper half of a symmetric channel */
-wall = 0.1;
+//Mesh.ElementOrder = 2;
+wall = 0.25;
 
 D = 1.0; // channel height
-wallLength = 4.0; // channel length
+wallLength = 1.0; // channel length
 
 Point(1) = {-wallLength/2.0, D/2.0, 0.0, wall};
 Point(2) = { wallLength/2.0, D/2.0, 0.0, wall};
@@ -12,7 +13,7 @@ Point(4) = { wallLength/2.0,   0.0, 0.0, wall};
 l = newl;
 // inlet:
 Line(l) = {1, 3};
-Physical Line('wallConstU') = {l};
+Physical Line('wallConstP') = {l};
 
 // symmetry line:
 Line(l+1) = {3, 4};
