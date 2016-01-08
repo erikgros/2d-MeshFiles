@@ -1,0 +1,3 @@
+Geometry.Points = 0;
+Print "screenShot.png";
+Exit;
