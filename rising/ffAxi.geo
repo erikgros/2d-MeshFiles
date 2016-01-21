@@ -68,11 +68,11 @@ out = newl; Line(out) = {k+3, k+4};
 Physical Line(Sprintf("bubble%g",1)) = {1, 2};
 If ( Case < 0 )
  Printf("Slip walls");
- Physical Line('wallNoSlip') = { in, out };
+ Physical Line('wallNoSlipP') = { in, out };
  Physical Line('wallNormalY') = { top, bl, br, left, right };  // symmetry bc
 EndIf
 If ( Case >= 0 )
  Printf("No-slip walls");
- Physical Line('wallNoSlip') = { top, in, out };
+ Physical Line('wallNoSlipP') = { top, in, out };
  Physical Line('wallNormalY') = { bl, br, left, right };  // symmetry bc
 EndIf
