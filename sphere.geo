@@ -1,9 +1,9 @@
 // sphere for axisymmetric static or oscillating drop simulation
 
-l1 = 0.05; // fine
-l2 = 0.15; // coarse
+l1 = 0.1; // fine
+l2 = 0.1; // coarse
 
-l = 6.0; // length of the domain
+l = 3.0; // length of the domain
 
 /* Defining bubble shape (half circle): */
 r = 0.5;
