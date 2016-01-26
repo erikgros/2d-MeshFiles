@@ -1,20 +1,30 @@
 // axisymmetric rising bubble using fixed frame
-Case = -27;
+Case = -314;
 l1 = 0.04; // fine
 l2 = 0.3;  // coarse
 
 D = 8.0; // channel diameter (case 0)
 l = 12.0; // total length of the domain
 dist = 2.0; // distance between the center and bottom (left) boundary
+twoD = 0.0;
+If( Case == -314 )
+ Printf("Quantitative benchmark computations of two-dimensional bubble dynamics, Int. J. for Num. Meth. in Fluids, vol. 60 pp. 1259-1288 (2008)");
+ D = 2.0;
+ l = 4.0;
+ dist = 1.0;
+ l1 = 0.0314159;
+ l2 = 0.1;
+ twoD = 100000;
+EndIf
 If( Case == -27 )
- Printf("C: Axisymmetric free boundary problems, J. Fluid Mech., vol. 341 pp. 269-294 (1997 341 pp. 269-294 (1997))");
+ Printf("C: Axisymmetric free boundary problems, J. Fluid Mech., vol. 341 pp. 269-294 (1997)");
  D = 3.0;
  dist = 1.0;
  l1 = 0.015;
  l2 = 0.3;
 EndIf
 If( Case == -26 )
- Printf("A: Axisymmetric free boundary problems, J. Fluid Mech., vol. 341 pp. 269-294 (1997 341 pp. 269-294 (1997))");
+ Printf("A: Axisymmetric free boundary problems, J. Fluid Mech., vol. 341 pp. 269-294 (1997)");
  D = 3.0;
  dist = 1.0;
  l1 = 0.04;
@@ -36,10 +46,10 @@ If( Case > 0 )
 EndIf
 
 /* Defining bubble shape (circle with diameter 1, cetered at origin): */
-Point(1) = {  0.0, 0.0, 0.0, l1}; // center
-Point(2) = {  0.0, 0.5, 0.0, l1}; // up
-Point(3) = {  0.5, 0.0, 0.0, l1}; // right
-Point(4) = { -0.5, 0.0, 0.0, l1}; // left
+Point(1) = {  0.0, twoD, 0.0, l1}; // center
+Point(2) = {  0.0, 0.5+twoD, 0.0, l1}; // up
+Point(3) = {  0.5, twoD, 0.0, l1}; // right
+Point(4) = { -0.5, twoD, 0.0, l1}; // left
 Ellipse(1) = { 2, 1, 1, 3 };
 Ellipse(2) = { 4, 1, 1, 2 };
 
@@ -51,10 +61,10 @@ k = newp;
  *   k+1   4       3                      k+4
  *    o----o-------o-----------------------o
  */
-Point(k+1) = {  -dist,   0.0, 0.0, l2};
-Point(k+2) = {  -dist, D/2.0, 0.0, l2};
-Point(k+3) = { l-dist, D/2.0, 0.0, l2};
-Point(k+4) = { l-dist,   0.0, 0.0, l2};
+Point(k+1) = {  -dist, twoD, 0.0, l2};
+Point(k+2) = {  -dist, D/2.0+twoD, 0.0, l2};
+Point(k+3) = { l-dist, D/2.0+twoD, 0.0, l2};
+Point(k+4) = { l-dist, twoD, 0.0, l2};
 
 top = newl; Line(top) = { k+2, k+3 };
 bl = newl; Line(bl) = { 1, 4 };
