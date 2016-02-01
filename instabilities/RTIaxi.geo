@@ -3,7 +3,7 @@ b = 0.02;
 w = 0.1;
 
 A = 0.05; // amplitude of initial disturbance
-r0 = 1000.0;
+r0 = 0.0;
 Dr = 3.0;
 zL = 1.75; // zero level of disturbance
 Dx = 1.0;

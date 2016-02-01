@@ -12,9 +12,8 @@ If( Case == -314 )
  D = 2.0;
  l = 4.0;
  dist = 1.0;
- l1 = 0.0314159;
+ l1 = 0.03;
  l2 = 0.1;
- twoD = 100000;
 EndIf
 If( Case == -27 )
  Printf("C: Axisymmetric free boundary problems, J. Fluid Mech., vol. 341 pp. 269-294 (1997)");

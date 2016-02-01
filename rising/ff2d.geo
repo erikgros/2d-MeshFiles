@@ -1,12 +1,12 @@
 // 2d complete bubble (upper and lower half)
-l1 = 0.0314159;
+l1 = 0.03;
 l2 = 0.1;
 
 Printf("Quantitative benchmark computations of two-dimensional bubble dynamics, Int. J. for Num. Meth. in Fluids, vol. 60 pp. 1259-1288 (2008)");
 D = 2.0;
 l = 4.0;
 dist = 1.0;
-twoD = 100000;
+twoD = 0.0;
 
 /* Defining bubble shape (circle with diameter 1, cetered at origin): */
 Point(1) = {  0.0, twoD, 0.0, l1}; // center
