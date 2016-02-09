@@ -37,4 +37,4 @@ Physical Line('wallLeft') = {1, 2};
 Physical Line('wallRight') = {4, 5};
 Physical Line('bubble1') = {7};
 Physical Line('wallNormalY') = {6};
-Physical Line('wallNoSlip') = {3};
+Physical Line('wallNormalYp') = {3};
