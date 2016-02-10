@@ -4,8 +4,8 @@ w = 0.1;
 
 A = 0.05; // amplitude of initial disturbance
 r0 = 0.0;
-Dr = 3.0;
-zL = 1.75; // zero level of disturbance
+Dr = 4.0;
+zL = r0 + Dr*0.55; // zero level of disturbance
 Dx = 1.0;
 
 Point(1) = {     0.0,      r0, 0.0, w };
