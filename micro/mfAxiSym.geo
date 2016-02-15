@@ -1,16 +1,28 @@
 // axisymmetric bubble in microchannel using moving frame
 
-l1 = 0.025; // very fine
-l2 = 0.05; // fine
-l3 = 0.14; // coarse
-
 D = 1.0; // channel diameter
-ll = 3.0*D; // length of the left section
-lr = 2.5*D; // length of the right section
 
-/* Defining bubble shape: */
+/* Case 17:
+l1 = 0.01; // very fine
+l2 = 0.02; // fine
+l3 = 0.08; // coarse
+
 r = 0.3*D; //0.45*D;
 body = 1.88834*D; //0.417042*D;
+*/
+
+ll = 3.0*D; // length of the left section
+lr = 4.0*D; // length of the right section
+
+/*  Case 18:*/
+l1 = 0.05; // very fine
+l2 = 0.08; // fine
+l3 = 0.1; // coarse
+
+r = 0.45*D;
+body = 1.42685*D;
+
+/* Defining bubble shape: */
 xc = 0.0;
 yc = 0.0;
 
@@ -63,18 +75,18 @@ top = newl; Line(top) = { k+4, k+6 };
 bc = newl; Line(bc) = { 1, 4 };
 br = newl; Line(br) = { 3, 1 };
 bl = newl; Line(bl) = { 4, 6 };
-left = newl; Line(left) = { k+3, 6 };
-right = newl; Line(right) = { 3, k+5 };
+left = newl; Line(left) = { 6, k+3 };
+right = newl; Line(right) = { k+5, 3 };
 
 
 in = newl; Line(in) = {k+1, k+2};
-out = newl; Line(out) = {k+7, k+8};
+out = newl; Line(out) = {k+8, k+7};
 
 Characteristic Length { k+3, k+4, k+5, k+6 } = l2;
 
 /* Defining boundary conditions: */
-Physical Line('wallParabolic3d') = { in, out };
-Physical Line('wallNoSlipPressure') = { 5, top, 7 };
-Physical Line('wallNormalV') = { 4, 6, bc, br, bl, left, right };  // symmetry bc
+Physical Line('wallParabolicU3d') = { in, out };
+Physical Line('wallNoSlipP') = { 5, top, 7 };
+Physical Line('wallNormalY') = { -4, -6, bc, br, bl, left, right };  // symmetry bc
 Physical Line(Sprintf("bubble%g",1)) = {1, 2, 3};
 
