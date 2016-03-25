@@ -1,18 +1,19 @@
 // sphere for axisymmetric static or oscillating drop simulation
 
-l1 = 0.1; // fine
-l2 = 0.1; // coarse
+l1 = 0.025; // fine
+l2 = 0.025; // coarse
+A = 0.1; // circle perturbation
 
 l = 3.0; // length of the domain
 
-/* Defining bubble shape (half circle): */
+/* Defining bubble shape (half ellipse): */
 r = 0.5;
 Point(1) = { 0.0, 0.0, 0.0, l1}; // center
-Point(2) = { 0.0,   r, 0.0, l1}; // up
+Point(2) = { 0.0, r+A, 0.0, l1}; // up
 Point(3) = {   r, 0.0, 0.0, l1}; // right
 Point(4) = {  -r, 0.0, 0.0, l1}; // left
-Ellipse(1) = { 2, 1, 1, 3 };
-Ellipse(2) = { 4, 1, 1, 2 };
+Ellipse(1) = { 2, 1, 2, 3 };
+Ellipse(2) = { 4, 1, 2, 2 };
 
 k = newp;
 /*  k+2                          k+3
