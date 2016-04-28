@@ -1,9 +1,9 @@
 /* axisymmetric annular Poiseuille flow */
 //Mesh.ElementOrder = 2;
-wall = 0.025;
+wall = 0.0125;
 
 D = 1.0; // pipe diameter
-wallLength = 1.0; // pipe length
+wallLength = 0.1; // pipe length
 ft = 0.15; // film thickness
 
 Di = D - 2.0 * ft;
