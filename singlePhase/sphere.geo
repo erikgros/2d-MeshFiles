@@ -42,9 +42,9 @@ in = newl; Line(in) = { k+3, k+5 };
 out = newl; Line(out) = { k+6, k+4 };
 
 // boundary conditions:
-Physical Line('wallConstU') = { in };
+Physical Line('wallConstUT') = { in };
 // The best way is to use outflow condition on top wall!!!
 Physical Line('wallOutflow') = { out, top  };
-Physical Line('wallNoSlip') = { 1, 2 };
+Physical Line('wallNoSlipT') = { 1, 2 };
 Physical Line('wallNormalY') = { left, right, frBot, baBot }; // symmetry bc
 
