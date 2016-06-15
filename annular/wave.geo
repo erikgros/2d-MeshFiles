@@ -1,22 +1,23 @@
 /* annular pipe with one wave length of sinusoidal perturbation */
 //Mesh.ElementOrder = 2;
-wall = 0.05;
+c = 0.04;
+f = 0.02;
 
 D = 1.0; // pipe diameter
-wallLength = 5.0; // pipe length
+wallLength = 12.0; // pipe length
 ft = 0.15; // film thickness
-A = 0.05; // perturbance amplitude
+A = 0.0; // perturbance amplitude
 
 Di = D - 2.0 * ft;
-Point(1) = {-wallLength/2.0,  D/2.0, 0.0, wall};
-Point(2) = { wallLength/2.0,  D/2.0, 0.0, wall};
-Point(3) = {-wallLength/2.0,    0.0, 0.0, wall};
-Point(4) = { wallLength/2.0,    0.0, 0.0, wall};
-Point(5) = {-wallLength/2.0, Di/2.0, 0.0, wall};
-Point(6) = {-wallLength/4.0, Di/2.0+A, 0.0, wall};
-Point(7) = {            0.0, Di/2.0, 0.0, wall};
-Point(8) = { wallLength/4.0, Di/2.0-A, 0.0, wall};
-Point(9) = { wallLength/2.0, Di/2.0, 0.0, wall};
+Point(1) = {-wallLength/2.0,  D/2.0, 0.0, c};
+Point(2) = { wallLength/2.0,  D/2.0, 0.0, c};
+Point(3) = {-wallLength/2.0,    0.0, 0.0, c};
+Point(4) = { wallLength/2.0,    0.0, 0.0, c};
+Point(5) = {-wallLength/2.0, Di/2.0, 0.0, f};
+Point(6) = {-wallLength/4.0, Di/2.0+A, 0.0, f};
+Point(7) = {            0.0, Di/2.0, 0.0, f};
+Point(8) = { wallLength/4.0, Di/2.0-A, 0.0, f};
+Point(9) = { wallLength/2.0, Di/2.0, 0.0, f};
 
 spline = newl;
 BSpline( spline ) = {5,6,7,8,9};
