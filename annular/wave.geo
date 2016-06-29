@@ -1,11 +1,12 @@
-/* annular pipe with one wave length of sinusoidal perturbation */
+/* mesh for annular */
 //Mesh.ElementOrder = 2;
-c = 0.04;
+c = 0.05;
 f = 0.02;
 
-D = 1.0; // pipe diameter
-wallLength = 12.0; // pipe length
-ft = 0.15; // film thickness
+// LiRenardy:
+D = 2.56; // pipe diameter
+wallLength = 2.0 * 3.14159265359; // pipe length
+ft = 0.28; // film thickness
 A = 0.0; // perturbance amplitude
 
 Di = D - 2.0 * ft;
@@ -26,7 +27,7 @@ l = newl;
 // inlet:
 Line(l) = {3, 5};
 Line(l+1) = {5, 1};
-Physical Line('wallConstP') = {l, l+1};
+Physical Line('wallAnnular') = {l, l+1};
 
 // symmetry line:
 Line(l+2) = {4, 3};
