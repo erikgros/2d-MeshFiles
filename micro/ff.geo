@@ -1,61 +1,67 @@
-// microchannel flow using fixed frame
- 
-nb = 1;
-b1 = 0.04;  // bubble fine
-b2 = 0.09;   // bubble coarse
-b = b1; // for 2d-sepideh-bubble.geo shape-file
-wall = 0.05;
-wallC = 0.12;
+// bubble flow with heat transfer using fixed frame
+l1 = 0.04; // very fine
+l2 = 0.07; // fine
+l3 = 0.1; // coarse
+tl = 8.0; // total length of the domain (12D?)
 
-D = 1.0;
-r = 0.3*D; //0.45*D; // bubble radius
-body = 1.39039*D; //0.534225*D; // bubble length
-slug = 0.7*r;
+D = 1.0;                   // channel diameter (2*0.247 mm)
+r = 0.2 / (2.0*0.247);     // bubble radius (0.2 mm)
+body = 0.5 / (2.0*0.247);  // blength of central region (0.5 mm)
 
-For t In {0:nb-1}
- // bubble's coordinates
- xc = 0.0+(slug+body+r+r/2.0)*t;
- yc = 0.0;
- zc = 0.0;
+xl = 0.5 / (2.0*0.247) - r;
+dist = 1.5 / (2.0*0.247) - (xl + body + 2.0 * r); // distance from the bubble to the heated section
+lr = tl - ( xl + body + 2.0 * r + dist);  // length of the heated section
 
- // including bubble shape file:
- Include '../bubbleShape/taylor.geo';
-EndFor
+/*
+ *              5           2
+ *              o --------- o
+ *            /              `,
+ *          6 o o 4       1 o  o 3
+ *
+ */
 
-wallLength1 = 0.6*D;
-wallLength2 = 0.9+nb*(body+3*r/2.0)+(nb-1)*slug;
-wallLength3 = 3.5*D;
+Point(1) = {  xl+r+body, 0.0, 0.0, l2}; // center
+Point(2) = {  xl+r+body,   r, 0.0, l1}; // up
+Point(3) = {xl+r+body+r, 0.0, 0.0, l1}; // right
+Point(4) = {       xl+r, 0.0, 0.0, l2}; // center
+Point(5) = {       xl+r,   r, 0.0, l1}; // up
+Point(6) = {         xl, 0.0, 0.0, l1}; // left
 
-k=10000;
-Point(k+1) = {-wallLength1 ,-(D/2.0), 0.0, wall}; // p1
-Point(k+2) = {-wallLength1 ,+(D/2.0), 0.0, wall}; // p2
-//Point(k+23) = {-wallLength1+0.00001 ,+(D/2.0)-0.00001, 0.0, wallC};
-//Point(k+24) = {-wallLength1+0.00001 ,-(D/2.0)+0.00001, 0.0, wallC};
+Ellipse(1) = { 2, 1, 1, 3 };
+Ellipse(2) = { 6, 4, 4, 5 };
+Line(3) = { 5, 2 };
 
-Extrude {wallLength1-0.3, 0, 0} {
-  Point{k+01, k+02};
-}
-Extrude {wallLength2, 0, 0} {
-  Point{k+03, k+04};
-}
-Extrude {wallLength3, 0, 0} {
-  Point{k+05, k+06};
-}
+k = newp;
+/*  k+2                                k+4               k+6
+ *    o---------------------------------o-----------------o
+ *
+ *
+ *   k+1             6            3                      k+5
+ *    o--------------o------------o-----------------------o
+ */
 
-Line(13) = {k+07, k+08};
-Line(14) = {k+01, k+02};
+Point(k+1) = { 0.0,   0.0, 0.0, l3};
+Point(k+2) = { 0.0, D/2.0, 0.0, l3};
+Point(k+4) = {0.1,   D/2.0, 0.0, l3};
+//Point(k+4) = {xl+body+2.0*r+dist, D/2.0, 0.0, l3};
+Point(k+5) = {lr+xl+body+2.0*r+dist,   0.0, 0.0, l3};
+Point(k+6) = {lr+xl+body+2.0*r+dist, D/2.0, 0.0, l3};
 
-Physical Line('wallInflowUParabolic') = { 14 };
-Physical Line('wallOutflow') = { 13 };
-Physical Line('wallNoSlip') = {7, 9, 11, 12, 10, 8};
+topl = newl; Line(topl) = { k+2, k+4 };
+topQ = newl; Line(topQ) = { k+4, k+6 };
+bc = newl; Line(bc) = { 1, 4 };
+br = newl; Line(br) = { 3, 1 };
+bl = newl; Line(bl) = { 4, 6 };
+left = newl; Line(left) = { 6, k+1 };
+right = newl; Line(right) = { k+5, 3 };
+in = newl; Line(in) = {k+1, k+2};
+out = newl; Line(out) = {k+6, k+5};
 
-jj=200*0;
-For t In {1:nb}
-Physical Line(Sprintf("bubble%g",t)) = {jj+6, jj+2, jj+1, jj+5, jj+4, jj+3};
- jj=200*t;
-EndFor
+/* Defining boundary conditions: */
+Physical Line('wallConstP') = { in };
+Physical Line('wallOutflow') = { out };
+Physical Line('wallNoSlip') = { topl };
+Physical Line('wallNoSlipT') = { topQ };
+Physical Line('wallNormalY') = { bc, br, bl, left, right };  // symmetry bc
+Physical Line(Sprintf("bubble%g",1)) = {1, 2, 3};
 
-Transfinite Line { 13 } = 11 Using Progression 1; // outlet
-Transfinite Line { 14 } = 12 Using Progression 1; // inlet
-Transfinite Line { 7, 8 } = 6 Using Progression 0.9; // left
-Transfinite Line { 11, 12 } = 46 Using Progression 100/99;// right
