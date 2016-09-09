@@ -57,7 +57,7 @@ Characteristic Length { k+9+2*nP, k+12  } = ( wallC + b1) / 2.0;
 Line(13) = {k+07, k+08};
 Line(14) = {k+01, k+02};
 
-Physical Line('wallInflowUParabolic') = { 13, 14 };
+Physical Line('wallPoiseuille') = { 13, 14 };
 Physical Line('wallNoSlipPressure') = {7, 9, 11, 12, 10, 8};
 
 jj=200*0;

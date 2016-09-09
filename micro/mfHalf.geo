@@ -85,7 +85,7 @@ Transfinite Line { bubbleWall } = 69 Using Bump 0.5;
 
 /* Defining boundary conditions: */
 //Physical Point('contactPoint') = { 3, 6 };
-Physical Line('wallInflowUParabolic') = { in, out };
+Physical Line('wallPoiseuille') = { in, out };
 Physical Line('wallNoSlipPressure') = { 5, 7, 8 };
 Physical Line('wallNormalV') = { 9, 10, 11, 4, 6 };  // symmetry bc
 Physical Line(Sprintf("bubble%g",1)) = {1, 2, 3};

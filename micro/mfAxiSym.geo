@@ -4,17 +4,17 @@ D = 1.0; // channel diameter
 
 /* Case 17:
 l1 = 0.01; // very fine
-l2 = 0.02; // fine
-l3 = 0.08; // coarse
+l2 = 0.03; // fine
+l3 = 0.05; // coarse
 
 r = 0.3*D; //0.45*D;
 body = 1.88834*D; //0.417042*D;
 */
 
-ll = 3.0*D; // length of the left section
-lr = 4.0*D; // length of the right section
+ll = 2.0*D; // length of the left section
+lr = 2.0*D; // length of the right section
 
-/*  Case 18:*/
+/*  Case 18: */
 l1 = 0.05; // very fine
 l2 = 0.08; // fine
 l3 = 0.1; // coarse
@@ -36,10 +36,10 @@ yc = 0.0;
 
 Point(1) = {  xc+r+body,   yc, 0.0, l2}; // center
 Point(2) = {  xc+r+body, yc+r, 0.0, l1}; // up
-Point(3) = {xc+r+body+r,   yc, 0.0, l1}; // right
+Point(3) = {xc+r+body+r,   yc, 0.0, l2}; // right
 Point(4) = {       xc+r,   yc, 0.0, l2}; // center
 Point(5) = {       xc+r, yc+r, 0.0, l1}; // up
-Point(6) = {         xc,   yc, 0.0, l1}; // left
+Point(6) = {         xc,   yc, 0.0, l2}; // left
 
 Ellipse(1) = { 2, 1, 1, 3 };
 Ellipse(2) = { 6, 4, 4, 5 };
@@ -85,7 +85,7 @@ out = newl; Line(out) = {k+8, k+7};
 Characteristic Length { k+3, k+4, k+5, k+6 } = l2;
 
 /* Defining boundary conditions: */
-Physical Line('wallParabolicU3d') = { in, out };
+Physical Line('wallPoiseuille') = { in, out };
 Physical Line('wallNoSlipP') = { 5, top, 7 };
 Physical Line('wallNormalY') = { -4, -6, bc, br, bl, left, right };  // symmetry bc
 Physical Line(Sprintf("bubble%g",1)) = {1, 2, 3};

@@ -88,7 +88,7 @@ out = newl; Line(out) = {k+8, k+7};
 Characteristic Length { k+3, k+4, k+5, k+6 } = l2;
 
 /* Defining boundary conditions: */
-Physical Line('wallParabolicU3d') = { in };
+Physical Line('wallPoiseuille') = { in };
 Physical Line('wallOutflow') = { out };
 Physical Line('wallNoSlip') = { 5, top, 7 };
 Physical Line('wallNormalY') = { -4, -6, bc, br, bl, left, right };  // symmetry bc
