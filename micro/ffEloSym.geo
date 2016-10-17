@@ -1,38 +1,23 @@
-// axisymmetric bubble in microchannel
-D = 1.0; // channel diameter
-Mesh.ElementOrder = 2;
-
-/* Case 17: */
-l1 = 0.025; // very fine
-l2 = 0.05; // fine
-l3 = 0.14; // coarse
-
-r = 0.3*D; //0.45*D;
-body = 1.88834*D; //0.417042*D;
-
-ll = 0.5*D; // length of the left section
-lr = 5.5*D; // length of the right section
-
-/*  Case 18:
-l1 = 0.05; // very fine
-l2 = 0.08; // fine
-l3 = 0.1; // coarse
-
-0.45*D;
-body = 1.42685*D;
-
-ll = 0.5*D; // length of the left section
-lr = 6.5*D; // length of the right section
-*/
-
-/* Defining bubble shape: */
+/* Elongated bubble with symmetry*/
 xc = 0.0;
 yc = 0.0;
+body = 0;
+r = 0.5 * deq;
+
+If( deq < 1 )
+ Printf("elongated bubble. deq should be > 1!");
+EndIf
+
+d = 0.8 * Ddim;// 0.9 * D;
+r = 0.5 * d / Ddim; // non-dimensional radius
+bodyDim = ( V - 3.14159265359 * (d*d*d) / 6.0 ) * 4.0 / ( 3.14159265359 * d*d );
+body = bodyDim / Ddim; // non-dimensions body length
+Printf("BODY %g",body);
 
 /*
  *              5           2
- *              o --------- o 
- *            /              `,     
+ *              o --------- o
+ *            /              `,
  *          6 o o 4       1 o  o 3
  *
  */
@@ -92,5 +77,5 @@ Physical Line('wallPoiseuille') = { in };
 Physical Line('wallOutflow') = { out };
 Physical Line('wallNoSlip') = { 5, top, 7 };
 Physical Line('wallNormalY') = { -4, -6, bc, br, bl, left, right };  // symmetry bc
-Physical Line(Sprintf("bubble%g",1)) = {1, 2, 3};
+ Physical Line(Sprintf("bubble%g",1)) = {1, 2, 3};
 
