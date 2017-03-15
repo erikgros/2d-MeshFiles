@@ -1,4 +1,4 @@
-// axisymmetric rising bubble using fixed frame
+// symmetric bubble d = 1
 Case = -314;
 l1 = 0.04; // fine
 l2 = 0.3;  // coarse
