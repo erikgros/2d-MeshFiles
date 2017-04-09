@@ -1,5 +1,5 @@
 // symmetric bubble d = 1
-Case = -314;
+Case = -315;
 l1 = 0.04; // fine
 l2 = 0.3;  // coarse
 
@@ -42,6 +42,14 @@ If( Case > 0 )
  Printf("Gustavo");
  l = 15.0;
  dist = 3.0;
+EndIf
+If( Case == -315 )
+ Printf("3D incompressible two-phase flow benchmark computations for rising droplets. 2014. Proceedings of the 11th World Congress on Computational Mechanics (WCCM XI), Barcelona.");
+ D = 2.0;
+ l = 4.0;
+ dist = 1.0;
+ l1 = 0.015;
+ l2 = 0.09;
 EndIf
 
 /* Defining bubble shape (circle with diameter 1, cetered at origin): */
