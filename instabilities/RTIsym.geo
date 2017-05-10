@@ -2,8 +2,8 @@
 b = 0.005;
 w = 0.05;
 
-A = 0.05; // amplitude of initial disturbance
-Dy = 2.0;
+A = 0.0005; // amplitude of initial disturbance
+Dy = 1.0; // 2.0;
 Dx = 0.5;
 
 Point(1) = {      0.0,    -Dy, 0.0, w };
@@ -27,5 +27,6 @@ BSpline(7) = {2, 7, 8, 9, 5};
 
 Physical Line('wallNormalX') = {1, 2, 4, 5};
 Physical Line('bubble1') = {7};
-Physical Line('wallNormalY') = {6};
-Physical Line('wallNormalYp') = {3};
+//Physical Line('wallNormalY') = {6};
+//Physical Line('wallNormalYp') = {3};
+Physical Line('wallNoSlip') = {3, 6};
