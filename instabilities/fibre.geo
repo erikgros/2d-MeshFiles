@@ -1,12 +1,12 @@
 // fibre geometry scaled by fiber radius
-b = 0.25;
-w = 0.25;
+b = 0.4;
+w = 0.4;
 
 h = 0.52 / 0.2;
 r0 = 1.0;
-Dr = 2.0 * h;
-Dx = 6.0;
-A = 0.0 * h; // displacement of spline control points
+Dr = 3.0 * h;
+Dx = 7.0/0.2;
+A = 0.4 * h; // displacement of spline control points
 
 Point(1) = { 0.0, r0+Dr, 0.0, w };
 Point(2) = {  Dx, r0+Dr, 0.0, w };
