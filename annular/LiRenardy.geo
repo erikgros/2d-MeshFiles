@@ -5,7 +5,7 @@ f = 0.02;
 
 // LiRenardy:
 D = 2.56; // pipe diameter
-wallLength = 2.0 * 3.14159265359; // pipe length
+wallLength = 3.14159265359; // pipe length
 ft = 0.28; // film thickness
 A = 0.0; // perturbance amplitude
 
@@ -27,7 +27,8 @@ l = newl;
 // inlet:
 Line(l) = {3, 5};
 Line(l+1) = {5, 1};
-Physical Line('wallAnnular') = {l, l+1};
+//Physical Line('wallAnnular') = {l, l+1};
+Physical Line('wallLeft') = {l, l+1};
 
 // symmetry line:
 Line(l+2) = {4, 3};
@@ -36,7 +37,8 @@ Physical Line('wallNormalY') = {l+2};
 // outlet:
 Line(l+3) = {2, 9};
 Line(l+4) = {9, 4};
-Physical Line('wallOutflow') = {l+3, l+4};
+//Physical Line('wallOutflow') = {l+3, l+4};
+Physical Line('wallRight') = {l+3, l+4};
 
 // upper wall:
 Line(l+5) = {1, 2};

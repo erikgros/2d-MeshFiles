@@ -1,10 +1,10 @@
 /* upper half of a spherical bubble in channel with constant temperature */
-wall = 0.04;
-bub = 0.008;
+wall = 0.06;
+bub = 0.01;
 
 D = 1.0;
 r = 0.025 * D;
-wallLength = 1.0; // channel length
+wallLength = 3.0; // channel length
 
 Point(1) = { 0.0, D/2.0, 0.0, wall };
 Point(2) = { 0.8 * D, D/2.0, 0.0, wall };

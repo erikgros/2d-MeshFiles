@@ -1,15 +1,16 @@
-/* upper half of a symmetric channel heated after 8 D */
+/* upper half of a symmetric channel heated after Nh D */
 wall = 0.06;
 bub = 0.05;
 
+Nh = 3;
 D = 1.0; // channel height
 delta = 0.045 * D;
 r = 0.5 * D - delta;
 body = 3.0 * D - 2.0 * r;
-wallLength = 20.0; // channel length
+wallLength = 7.0; // channel length
 
 Point(1) = { 0.0, D/2.0, 0.0, wall };
-Point(2) = { 8.0 * D, D/2.0, 0.0, wall };
+Point(2) = { Nh * D, D/2.0, 0.0, wall };
 Point(3) = { wallLength, D/2.0, 0.0, wall };
 Point(4) = { 0.0,   0.0, 0.0, wall };
 Point(5) = { wallLength,   0.0, 0.0, wall };

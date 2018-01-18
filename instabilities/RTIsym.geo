@@ -1,6 +1,6 @@
 // 2D Rayleigh-Taylor instability with symmetric BCs
-b = 0.005;
-w = 0.05;
+b = 0.0025;
+w = 0.03;
 
 A = 0.0005; // amplitude of initial disturbance
 Dy = 1.0; // 2.0;

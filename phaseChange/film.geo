@@ -25,7 +25,8 @@ Line(6) = {6, 1};
 BSpline(7) = {6, 7, 8, 3};
 
 Physical Line('wallOutflow') = {1};
-Physical Line('wallRight') = {2, 3};
-Physical Line('wallLeft') = {5, 6};
+#Physical Line('wallRight') = {2, 3};
+#Physical Line('wallLeft') = {5, 6};
+Physical Line('wallNormalX') = {2, 3, 5, 6};
 Physical Line('wallNoSlip') = {4};
 Physical Line('bubble1') = {7};
